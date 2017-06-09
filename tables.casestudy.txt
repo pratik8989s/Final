@@ -1,0 +1,32 @@
+create table admin(ADMIN_ID NUMBER(10) NOT NULL PRIMARY KEY,admin_name VARCHAR2(25),PASSWORD VARCHAR2(20),email_id varchar2(30),phno number(10));
+
+create table product1(PRODUCT_ID NUMBER(10) NOT NULL PRIMARY KEY,PRODUCT_NAME VARCHAR2(25),PRODUCT_CATEGORY VARCHAR2(20),PRODUCT_STATUS VARCHAR2(20),PRODUCT_PRICE NUMBER(10),PRODUCT_DESC VARCHAR2(100));
+
+create table order_details(ORDER_ID NUMBER(10) NOT NULL PRIMARY KEY,ORDER_DATE DATE,PAYMENT_MODE VARCHAR2(20),order_status varchar2(20),Product_ID NUMBER(10) REFERENCES Product1(PRODUCT_ID),customer_id NUMBER(10) REFERENCES Customer1(CUSTOMER_ID));
+
+create table customer1(CUSTOMER_ID NUMBER(10) NOT NULL PRIMARY KEY,CUST_NAME VARCHAR2(12),CUSTOMER_ADDR VARCHAR2(15),CUSTOMER_PHNO NUMBER(12),EMAIL_ID VARCHAR2(20), PASSWORD VARCHAR(20));
+
+create table mycart(customer_id NUMBER(10) REFERENCES Customer1(CUSTOMER_ID),Product_id NUMBER(10) REFERENCES Product1(PRODUCT_ID));
+
+create table mywishlist(customer_id NUMBER(10) REFERENCES Customer1(CUSTOMER_ID),Product_id NUMBER(10) REFERENCES Product1(PRODUCT_ID));
+
+one record in admin table:
+insert into admin values(143,'jacintodarryl','darryl');
+commit;
+
+
+
+for unique order id:
+create sequence order_seq
+start with 100 increment by 1 maxvalue 300;
+commit;
+
+for unique product id:
+create sequence prod_seq
+start with 100 increment by 1 maxvalue 300;
+commit;
+
+for unique customer id:
+create sequence cust_seq
+start with 100 increment by 1 maxvalue 300;
+commit;
